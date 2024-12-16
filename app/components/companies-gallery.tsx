@@ -1,27 +1,35 @@
+'use client'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import './styles.css';
+import companies from '../companies-projects';
 
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-
-export default function CompaniesGallery() {
+export function CompaniesGallery() {
   return (
-    <>
-      <h1>Projetos:</h1>
-      <div className="flex bg-slate-800">
-        <div className="m-5 bg-slate-700">
-          <p>Porto (Sustentação)</p>
-          <p>Java | Spring | SQL</p>
-        </div>
-        <div className="m-5 bg-slate-700">
-          <p>Dock (Antifraude)</p>
-          <p>Java | Spring | SQL</p>
-        </div>
-        <div className="m-5 bg-slate-700">
-          <p>Dock (Antifraude)</p>
-          <p>Java | Spring | SQL</p>
-        </div>
-      </div>
-    </>
+    <div className='mb-10'>
+      <h1 className='mb-5 text-lg font-medium'>Empresas e projetos que contribui:</h1>
+      <Swiper 
+        className='w-full flex items-center justify-center' 
+        navigation={true} 
+        modules={[Navigation]}
+        slidesPerView={2}
+        loop={true}
+      >
+
+        {companies.map(company => (
+          <SwiperSlide key={company.id}>
+            <a href={company.url}>
+              <div className="bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 mx-12 rounded-lg flex flex-col items-center cursor-pointer p-4">
+                {company.name}
+                <p className="text-xs">Saiba mais</p>
+              </div>
+            </a>
+          </SwiperSlide>
+        ))}
+
+      </Swiper>
+     </div>
   );
-}
+};

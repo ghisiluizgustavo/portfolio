@@ -6,6 +6,9 @@ const navItems = {
   },
   '/blog': {
     name: 'blog',
+  },
+  '/project-details': {
+    name: 'experiência',
   }
 }
 
