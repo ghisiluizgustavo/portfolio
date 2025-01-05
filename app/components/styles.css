@@ -1,21 +1,23 @@
-/* Cor das setas no modo claro */
+/* Default light mode styles */
 .swiper-button-next,
 .swiper-button-prev {
-  color: #000; /* Preto para o modo claro */
+  color: #000; /* Black for light mode */
 }
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-  color: #333; /* Tom mais escuro no hover (opcional) */
+  color: #333; /* Darker shade on hover */
 }
 
-/* Estilos para o modo escuro */
-.dark .swiper-button-next,
-.dark .swiper-button-prev {
-  color: #fff; /* Branco para o modo escuro */
-}
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #fff; /* White for dark mode */
+  }
 
-.dark .swiper-button-next:hover,
-.dark .swiper-button-prev:hover {
-  color: #f5f5f5; /* Cor mais clara no hover (opcional) */
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    color: #f5f5f5; /* Lighter shade on hover */
+  }
 }

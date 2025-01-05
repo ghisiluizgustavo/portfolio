@@ -9,7 +9,7 @@ import companies from '../companies-projects';
 export function CompaniesGallery() {
   return (
     <div className='mb-10'>
-      <h1 className='mb-5 text-lg font-medium'>Empresas e projetos que contribui:</h1>
+      <h1 className='mb-5 text-lg font-medium'>Empresas e projetos que contribuí:</h1>
       <Swiper 
         className='w-full flex items-center justify-center' 
         navigation={true} 

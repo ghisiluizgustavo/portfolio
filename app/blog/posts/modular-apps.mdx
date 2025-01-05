@@ -1,12 +1,32 @@
 ---
-title: 'Lorem Ipsum'
+title: 'Aplicações modulares com Java, Spring Boot e Maven'
 publishedAt: '2024-12-11'
-summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+summary: 'Como criar aplicações modulares com Java, Spring Boot e Maven'
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut urna id felis tincidunt feugiat. Integer fringilla sem nec metus condimentum, at malesuada lacus ullamcorper. Etiam vestibulum libero nec quam hendrerit blandit. Nam vel felis et lacus lacinia sodales nec a dolor. Nulla facilisi. Vivamus a commodo nisi.
+### 🤔 O que são módulos?
 
-Sed a libero tempor, scelerisque purus non, fringilla urna. Nunc auctor, ipsum nec pulvinar ornare, orci nulla ultricies ex, quis dapibus arcu eros non purus. Fusce ac accumsan nisl. In at diam at magna sagittis ultrices et vitae nibh. Aliquam erat volutpat. Nulla facilisi. Suspendisse potenti.
+Módulos são aplicações ou parte de aplicações que funcionam independentemente de outras partes, mas que juntos podem servir para um objetivo em comum.
+Podem possuir suas próprias dependências, e normalmente tem objetivos específicos que cooperam para algo maior.
+Pensando em um modelo comum de arquitetura limpa, teríamos:
+- Módulos de domínio (domain) que contém as entidades do domínio e regras de negócio;
+- Módulos de infraestrutura (infrastructure) que seria responsável por chamadas serviços externos como banco de dados, APIs REST;
+- Módulos de apresentação (presentation) que possui a responsabilidade de externalizar as informações;
+- Entre outros;
 
-Integer tincidunt justo eu magna suscipit, ut fermentum nisi consectetur. Curabitur eu purus sit amet sapien ultrices dapibus ut eget libero. Donec ut lacus neque. Ut luctus feugiat pulvinar. Vestibulum gravida tincidunt dictum. Ut euismod aliquet magna, in cursus leo fringilla in.
+### 🤔 Quais são os beneficios de ter uma aplicação modularizada?
 
+Ter uma aplicação modularizada traz uma série de benefícios, como:
+- Módulos independentes de dependências (ex. módulo de domain não precisa ter dependência com nenhum framework)
+- Reusabilidade de código
+- Segregação de responsabilidades (primeiro princípio do S.O.L.I.D.)
+
+### 💪🏼 Mão na massa. Como fazer:
+
+1. Deve-se criar um projeto Maven vazio, esse será o projeto pai (root)
+2. Após isso são criados módulos para cada camada da aplicação (domain, infra, application, etc)
+3. Os módulos são outros projetos Maven, ou seja, cada módulo corresponde a um pom.xml
+4. No projeto pai, no arquivo pom.xml, será necessário declarar os módulos dentro da tag `<modules>` onde cada
+módulo estará encapsulado pela tag `<module>`
+5. Após isto será necessário adicionar as dependências necessárias em cada módulo
+(ex. módulo de infra terá dependências como flyway, spring-data, entre outras. inclusive dependência do módulo de domain)
