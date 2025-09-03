@@ -52,33 +52,32 @@ function getMDXData(dir) {
   })
 }
 
-let cachedPosts: any[] | null = null
+// Pre-compute posts at build time to avoid dynamic file system access
+const POSTS_CACHE = (() => {
+  try {
+    // In production (Vercel), the build process flattens the directory structure
+    // Try both the original path and the flattened path
+    const originalPath = path.join(process.cwd(), 'app', '[locale]', 'blog', 'posts')
+    const flattenedPath = path.join(process.cwd(), 'app', 'blog', 'posts')
+    
+    // Check if original path exists first (for local development)
+    if (fs.existsSync(originalPath)) {
+      return getMDXData(originalPath)
+    }
+    // Fallback to flattened path (for production)
+    else if (fs.existsSync(flattenedPath)) {
+      return getMDXData(flattenedPath)
+    }
+    
+    return []
+  } catch (error) {
+    console.error('Error loading blog posts:', error)
+    return []
+  }
+})()
 
 export function getBlogPosts() {
-  // Cache posts to avoid re-reading files on every request
-  if (cachedPosts !== null) {
-    return cachedPosts
-  }
-
-  // In production (Vercel), the build process flattens the directory structure
-  // Try both the original path and the flattened path
-  const originalPath = path.join(process.cwd(), 'app', '[locale]', 'blog', 'posts')
-  const flattenedPath = path.join(process.cwd(), 'app', 'blog', 'posts')
-  
-  let posts: any[] = []
-  
-  // Check if original path exists first (for local development)
-  if (fs.existsSync(originalPath)) {
-    posts = getMDXData(originalPath)
-  }
-  // Fallback to flattened path (for production)
-  else if (fs.existsSync(flattenedPath)) {
-    posts = getMDXData(flattenedPath)
-  }
-  
-  // Cache the result
-  cachedPosts = posts
-  return posts
+  return POSTS_CACHE
 }
 
 export function formatDate(date: string, includeRelative = false) {

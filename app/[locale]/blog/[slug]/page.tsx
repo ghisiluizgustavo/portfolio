@@ -3,6 +3,9 @@ import { CustomMDX } from '../../../components/mdx'
 import { formatDate, getBlogPosts } from '../utils'
 import { baseUrl } from '../../../sitemap'
 
+// Force static generation
+export const dynamic = 'force-static'
+
 export async function generateStaticParams() {
   let posts = getBlogPosts()
 
@@ -10,6 +13,8 @@ export async function generateStaticParams() {
     slug: post.slug,
   }))
 }
+
+export const dynamicParams = false
 
 function getBlogPost(slug: string) {
   return getBlogPosts().find((post) => post.slug === slug)
