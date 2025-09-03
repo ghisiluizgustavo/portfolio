@@ -52,24 +52,33 @@ function getMDXData(dir) {
   })
 }
 
+let cachedPosts: any[] | null = null
+
 export function getBlogPosts() {
+  // Cache posts to avoid re-reading files on every request
+  if (cachedPosts !== null) {
+    return cachedPosts
+  }
+
   // In production (Vercel), the build process flattens the directory structure
   // Try both the original path and the flattened path
   const originalPath = path.join(process.cwd(), 'app', '[locale]', 'blog', 'posts')
   const flattenedPath = path.join(process.cwd(), 'app', 'blog', 'posts')
   
+  let posts: any[] = []
+  
   // Check if original path exists first (for local development)
   if (fs.existsSync(originalPath)) {
-    return getMDXData(originalPath)
+    posts = getMDXData(originalPath)
   }
-  
   // Fallback to flattened path (for production)
-  if (fs.existsSync(flattenedPath)) {
-    return getMDXData(flattenedPath)
+  else if (fs.existsSync(flattenedPath)) {
+    posts = getMDXData(flattenedPath)
   }
   
-  // If neither exists, return empty array
-  return []
+  // Cache the result
+  cachedPosts = posts
+  return posts
 }
 
 export function formatDate(date: string, includeRelative = false) {

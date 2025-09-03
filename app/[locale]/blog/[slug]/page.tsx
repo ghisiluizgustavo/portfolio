@@ -11,8 +11,12 @@ export async function generateStaticParams() {
   }))
 }
 
+function getBlogPost(slug: string) {
+  return getBlogPosts().find((post) => post.slug === slug)
+}
+
 export function generateMetadata({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+  let post = getBlogPost(params.slug)
   if (!post) {
     return
   }
@@ -52,7 +56,7 @@ export function generateMetadata({ params }) {
 }
 
 export default function Blog({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+  let post = getBlogPost(params.slug)
 
   if (!post) {
     notFound()
