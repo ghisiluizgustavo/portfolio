@@ -1,0 +1,34 @@
+{
+  "navigation": {
+    "home": "home",
+    "blog": "blog",
+    "experience": "experience"
+  },
+  "home": {
+    "welcome": "Hello, welcome",
+    "description": "I am a Backend developer (Java), with over {experience} of experience in the professional market. With expertise in {technologies}.",
+    "experience_years": "5 years",
+    "technologies": "Java, Spring, AWS, Microservices and more"
+  },
+  "footer": {
+    "github": "github",
+    "source_code": "source code"
+  },
+  "metadata": {
+    "title": "Luiz Gustavo Ghisi Flores",
+    "description": "This is my portfolio.",
+    "og_title": "My Portfolio",
+    "og_description": "This is my portfolio.",
+    "og_site_name": "My Portfolio"
+  },
+  "components": {
+    "techs_title": "Technologies I master:",
+    "companies_title": "Companies and projects I contributed to:",
+    "companies_learn_more": "Learn more"
+  },
+  "blog": {
+    "title": "My Blog",
+    "description": "Read my blog.",
+    "page_title": "Blog"
+  }
+}

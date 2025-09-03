@@ -1,3 +1,5 @@
+import {getTranslations} from 'next-intl/server';
+
 function ArrowIcon() {
   return (
     <svg
@@ -15,7 +17,9 @@ function ArrowIcon() {
   )
 }
 
-export default function Footer() {
+export default async function Footer() {
+  const t = await getTranslations('footer');
+  
   return (
     <footer className="mb-16">
       <ul className="font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300">
@@ -27,7 +31,7 @@ export default function Footer() {
             href="https://github.com/ghisiluizgustavo"
           >
             <ArrowIcon />
-            <p className="ml-2 h-7">github</p>
+            <p className="ml-2 h-7">{t('github')}</p>
           </a>
         </li>
         <li>
@@ -38,7 +42,7 @@ export default function Footer() {
             href="https://github.com/ghisiluizgustavo/portfolio"
           >
             <ArrowIcon />
-            <p className="ml-2 h-7">código fonte</p>
+            <p className="ml-2 h-7">{t('source_code')}</p>
           </a>
         </li>
       </ul>

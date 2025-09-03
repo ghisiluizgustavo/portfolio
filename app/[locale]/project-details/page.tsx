@@ -1,11 +1,15 @@
-import companies from '../companies-projects'
+import { getCompanies } from '../../data/companies';
+import { getLocale } from 'next-intl/server';
 import Link from "next/link";
 
-export default function Page() {
+export default async function Page() {
+  const locale = await getLocale() as 'pt' | 'en';
+  const companies = getCompanies(locale);
+  
   return (
     <>
-      {companies.map(company => (
-          <div id={company.name.toLowerCase()} className="mb-10">
+      {companies.map((company, index) => (
+          <div key={index} id={company.name.toLowerCase()} className="mb-10">
             <Link href={company.externalUrl} target={`_blank`} className="group inline-flex items-center gap-1 transition-colors">
             <h1 className="text-xl underline text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 {company.name}

@@ -1,16 +1,21 @@
-import techs from '../tech-badges';
+import { getTechs } from '../data/techs'
+import {getTranslations, getLocale} from 'next-intl/server';
 
-export default function TechBadges() {
+export default async function TechsBadges() {
+  const t = await getTranslations('components');
+  const locale = await getLocale() as 'pt' | 'en';
+  const techs = getTechs(locale);
+  
   return (
-    <>
-      <h1 className="text-lg font-medium">Tecnologias que domino:</h1>
-      <div className="flex flex-wrap gap-3 p-4">
-        {techs.map((tech) => (
-          <span className={`px-3 py-1 text-sm font-medium text-white rounded-full ${tech.color}`}>
+    <div className='mb-10'>
+      <h1 className='mb-5 text-lg font-medium'>{t('techs_title')}</h1>
+      <div className='flex flex-wrap gap-2'>
+        {techs.map((tech, index) => (
+          <span key={index} className={`${tech.color} text-white px-2 py-1 rounded text-sm`}>
             {tech.name}
           </span>
         ))}
       </div>
-    </>
-  );
+    </div>
+  )
 }

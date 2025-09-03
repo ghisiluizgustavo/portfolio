@@ -1,18 +1,17 @@
 import Link from 'next/link'
+import {getTranslations, getLocale} from 'next-intl/server';
+import LanguageSwitcher from './language-switcher';
 
 const navItems = {
-  '/': {
-    name: 'página principal',
-  },
-  '/blog': {
-    name: 'blog',
-  },
-  '/project-details': {
-    name: 'experiência',
-  }
+  '/': 'home',
+  '/blog': 'blog',
+  '/project-details': 'experience'
 }
 
-export function Navbar() {
+export async function Navbar() {
+  const t = await getTranslations('navigation');
+  const locale = await getLocale();
+  
   return (
     <aside className="-ml-[8px] mb-16 tracking-tight">
       <div className="lg:sticky lg:top-20">
@@ -21,17 +20,18 @@ export function Navbar() {
           id="nav"
         >
           <div className="flex flex-row space-x-0 pr-10">
-            {Object.entries(navItems).map(([path, { name }]) => {
+            {Object.entries(navItems).map(([path, key]) => {
               return (
                 <Link
                   key={path}
-                  href={path}
+                  href={`/${locale}${path}`}
                   className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1"
                 >
-                  {name}
+                  {t(key)}
                 </Link>
               )
             })}
+            <LanguageSwitcher />
           </div>
         </nav>
       </div>
