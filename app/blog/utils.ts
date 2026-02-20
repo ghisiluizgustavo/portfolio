@@ -19,7 +19,7 @@ function parseFrontmatter(fileContent: string) {
   frontMatterLines.forEach((line) => {
     let [key, ...valueArr] = line.split(': ')
     let value = valueArr.join(': ').trim()
-    value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
+    value = value.replace(/^['"](.*)['"]$/, '$1')
     metadata[key.trim() as keyof Metadata] = value
   })
 
@@ -52,21 +52,12 @@ function getMDXData(dir) {
   })
 }
 
-// Pre-compute posts at build time to avoid dynamic file system access
 const POSTS_CACHE = (() => {
   try {
-    // In production (Vercel), the build process flattens the directory structure
-    // Try both the original path and the flattened path
-    const originalPath = path.join(process.cwd(), 'app', '[locale]', 'blog', 'posts')
-    const flattenedPath = path.join(process.cwd(), 'app', 'blog', 'posts')
+    const postsPath = path.join(process.cwd(), 'app', 'blog', 'posts')
     
-    // Check if original path exists first (for local development)
-    if (fs.existsSync(originalPath)) {
-      return getMDXData(originalPath)
-    }
-    // Fallback to flattened path (for production)
-    else if (fs.existsSync(flattenedPath)) {
-      return getMDXData(flattenedPath)
+    if (fs.existsSync(postsPath)) {
+      return getMDXData(postsPath)
     }
     
     return []

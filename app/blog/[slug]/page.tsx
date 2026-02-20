@@ -1,9 +1,8 @@
 import { notFound } from 'next/navigation'
-import { CustomMDX } from '../../../components/mdx'
+import { CustomMDX } from '../../components/mdx'
 import { formatDate, getBlogPosts } from '../utils'
-import { baseUrl } from '../../../sitemap'
+import { baseUrl } from '../../sitemap'
 
-// Force static generation
 export const dynamic = 'force-static'
 
 export async function generateStaticParams() {

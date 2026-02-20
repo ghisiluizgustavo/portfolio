@@ -16,7 +16,11 @@ export default async function Page() {
                 <span className="inline-block ml-1 transform group-hover:translate-x-1 transition-transform">→</span>
             </h1>
             </Link>
-            <p>{company.description}</p>
+            <ul className="mt-3 space-y-2 list-disc list-inside text-neutral-800 dark:text-neutral-200">
+              {company.achievements.map((achievement, idx) => (
+                <li key={idx} className="text-sm leading-relaxed">{achievement}</li>
+              ))}
+            </ul>
           </div>
       ))}
     </>

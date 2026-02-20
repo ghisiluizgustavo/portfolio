@@ -6,7 +6,7 @@
   },
   "home": {
     "welcome": "Hello, welcome",
-    "description": "I am a Backend developer (Java), with over {experience} of experience in the professional market. With expertise in {technologies}.",
+    "description": "Software Engineer with over {experience_years} of experience building and scaling backend systems in large-scale financial platforms. Proven track record leading critical features, influencing architectural decisions, and delivering high-performance distributed systems. Specialized in Java, Spring, and AWS, with strong ownership from system design to production deployment",
     "experience_years": "5 years",
     "technologies": "Java, Spring, AWS, Microservices and more"
   },

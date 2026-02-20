@@ -13,8 +13,7 @@ export default async function Page() {
       </h1>
       <p className="mb-4">
         {t('description', {
-          experience: t('experience_years'),
-          technologies: t('technologies')
+          experience_years: t('experience_years')
         })}
       </p>
 

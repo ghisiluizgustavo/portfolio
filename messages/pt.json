@@ -6,7 +6,7 @@
   },
   "home": {
     "welcome": "Olá, seja bem vindo(a)",
-    "description": "Eu sou um desenvolvedor Backend (Java), com mais de {experience} de experiência no mercado profissional. Com expertise em {technologies}.",
+    "description": "Software Engineer com mais de {experience_years} de experiência atuando em plataformas de larga escala, liderando features críticas e influenciando decisões arquiteturais em ambientes distribuídos. Especialista em Java, Spring e AWS, com histórico de ganhos expressivos de performance e forte ownership do desenho à produção",
     "experience_years": "5 anos",
     "technologies": "Java, Spring, AWS, Microserviços e mais"
   },

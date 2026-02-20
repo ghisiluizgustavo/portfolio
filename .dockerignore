@@ -1,0 +1,41 @@
+# Dependências
+node_modules
+npm-debug.log
+pnpm-debug.log
+yarn-error.log
+
+# Next.js
+.next
+out
+dist
+
+# Testes
+coverage
+.nyc_output
+
+# Ambiente
+.env
+.env*.local
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Outros
+README.md
+.prettierrc
+.eslintrc.json

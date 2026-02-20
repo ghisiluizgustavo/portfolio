@@ -4,7 +4,6 @@ import LanguageSwitcher from './language-switcher';
 
 const navItems = {
   '/': 'home',
-  '/blog': 'blog',
   '/project-details': 'experience'
 }
 
@@ -31,6 +30,12 @@ export async function Navbar() {
                 </Link>
               )
             })}
+            <Link
+              href="/blog"
+              className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1"
+            >
+              {t('blog')}
+            </Link>
             <LanguageSwitcher />
           </div>
         </nav>
